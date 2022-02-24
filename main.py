@@ -18,8 +18,9 @@ async def calc(item: CalcRequest):
     errors = validate_expression(item.expression)
     if errors:
         history.save_history(item.expression, errors, Status.FAIL)
-        msg = "\n".join(["Invalid data:", *errors])
-        raise HTTPException(status_code=400, detail=msg)
+        msg = "".join(["Invalid data: ", *errors])
+        print(msg)
+        raise HTTPException(status_code=422, detail=msg)
     result = calculate_expression(item.expression)
     history.save_history(item.expression, response=result,
                          status=Status.SUCCESS)
@@ -31,6 +32,6 @@ async def get_history(limit: Optional[int] = None,
                       status: Optional[str] = None):
     errors = history.validate_attributes(limit=limit, status=status)
     if errors:
-        msg = "\n".join(["Invalid atributes:", *errors])
-        raise HTTPException(status_code=400, detail=msg)
+        msg = "".join(["Invalid atributes:", *errors])
+        raise HTTPException(status_code=422, detail=msg)
     return history.get_history(limit=limit, status=status)
