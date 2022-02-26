@@ -7,8 +7,8 @@ client = TestClient(app)
 
 def test_calc_correct_input():
     for expr, result in (
-            ('1+2', 2.999),
-            # ('1*3*3', 9),
+            ('1+2', 3),
+            ('1*3*3', 9),
     ):
         response = client.post(
             "/calc/",
