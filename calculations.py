@@ -1,4 +1,5 @@
 import re
+from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_DOWN
 
 OPERATORS = {"+": (1, lambda a, b: a + b), "-": (1, lambda a, b: a - b),
              "*": (2, lambda a, b: a * b), "/": (2, lambda a, b: a / b)}
@@ -7,10 +8,16 @@ NUMS = "1234567890."
 ACCEPTABLE = [*NUMS, *BRACKETS, *OPERATORS, " "]
 
 
-def math_round(num, signs_count=3):
-    sign = 1 if num == 0 else -1
-    ans = int(num * 10 ** signs_count + 0.5 * sign) / 10 ** signs_count
-    return ans
+def math_round(num, sign_count=3):
+    quantize_example = Decimal(10 ** ((-1) * Decimal(sign_count)))
+    decimal_num = Decimal(num)
+    if decimal_num % quantize_example < 5:
+        result = decimal_num.quantize(Decimal(quantize_example),
+                                      rounding=ROUND_HALF_UP)
+    else:
+        result = decimal_num.quantize(Decimal(quantize_example),
+                                      rounding=ROUND_HALF_DOWN)
+    return result.normalize()
 
 
 def validate_expression(expression):
@@ -65,7 +72,9 @@ def check_brackets_consistency(expression):
 
 def parse_expression(expression):
     """
-    TODO: explain
+    Function gets arithmetical expression in str format,
+    runs over the string, finds numbers, acceptable signs and brackets
+    and sends it further in correct format
     """
     the_num = ""
     if expression[0] in OPERATORS:
@@ -122,4 +131,5 @@ def calculate_rpn(data):
 
 
 def calculate_expression(expression):
-    return math_round(calculate_rpn(get_rpn(parse_expression(expression))))
+    # return math_round(calculate_rpn(get_rpn(parse_expression(expression))))
+    return calculate_rpn(get_rpn(parse_expression(expression)))
