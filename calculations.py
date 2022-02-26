@@ -72,9 +72,9 @@ def check_brackets_consistency(expression):
 
 def parse_expression(expression):
     """
-    Function gets arithmetical expression in str format,
-    runs over the string, finds numbers, acceptable signs and brackets
-    and sends it further in correct format
+    Gets arithmetical expression in str format, runs over the string,
+    finds numbers, acceptable signs and brackets and sends it further in
+    correct format
     """
     the_num = ""
     if expression[0] in OPERATORS:
@@ -93,7 +93,8 @@ def parse_expression(expression):
 
 def get_rpn(formula):
     """
-    TODO: explain why you need it
+    Function gets formula and returns the expression in Reverse Polish
+    Notation
     """
     stack = []
     for symbol in formula:
@@ -118,7 +119,8 @@ def get_rpn(formula):
 
 def calculate_rpn(data):
     """
-    TODO: explain
+    Gets expression in Reverse Polish Notation and returns calculated
+    result
     """
     stack = []
     for i, elem in enumerate(data):
@@ -131,5 +133,4 @@ def calculate_rpn(data):
 
 
 def calculate_expression(expression):
-    # return math_round(calculate_rpn(get_rpn(parse_expression(expression))))
-    return calculate_rpn(get_rpn(parse_expression(expression)))
+    return math_round(calculate_rpn(get_rpn(parse_expression(expression))))
