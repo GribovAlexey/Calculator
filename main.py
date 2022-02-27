@@ -3,8 +3,8 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from calculations import calculate_expression, validate_expression
-from history import history, Status
+from src.calculations import calculate_expression, validate_expression
+from src.history import history, Status
 
 app = FastAPI()
 
