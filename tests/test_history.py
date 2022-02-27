@@ -128,12 +128,12 @@ def test_history_get_history_with_limit_and_status_fail():
 def test_history_get_history_status_error():
     response = client.get("/history/?status=mistake")
     assert response.status_code == 422
-    assert response.json()["detail"] \
-           == "Invalid attributes: Status error. Wrong status: mistake"
+    expected = "Invalid attributes: Status error. Wrong status: mistake"
+    assert response.json()["detail"] == expected
 
 
 def test_history_get_history_limit_error():
     response = client.get("/history/?limit=-2")
     assert response.status_code == 422
-    assert response.json()["detail"] \
-           == "Invalid attributes: History length error. Wrong length: -2"
+    expected = "Invalid attributes: History length error. Wrong length: -2"
+    assert response.json()["detail"] == expected

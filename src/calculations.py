@@ -1,5 +1,5 @@
 import re
-from decimal import Decimal, ROUND_HALF_UP, ROUND_HALF_DOWN
+from decimal import Decimal, ROUND_HALF_UP
 
 OPERATORS = {"+": (1, lambda a, b: a + b), "-": (1, lambda a, b: a - b),
              "*": (2, lambda a, b: a * b), "/": (2, lambda a, b: a / b)}

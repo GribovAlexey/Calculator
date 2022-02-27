@@ -31,6 +31,6 @@ async def get_history(limit: Optional[int] = None,
                       status: Optional[str] = None):
     errors = history.validate_attributes(limit=limit, status=status)
     if errors:
-        msg = "".join(["Invalid atributes:", *errors])
+        msg = "".join(["Invalid attributes: ", *errors])
         raise HTTPException(status_code=422, detail=msg)
     return history.get_history(limit=limit, status=status)
