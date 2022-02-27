@@ -1,0 +1,13 @@
+[
+  "test_history.py::test_history_get_history",
+  "test_history.py::test_history_get_history_limit_error",
+  "test_history.py::test_history_get_history_status_error",
+  "test_history.py::test_history_get_history_with_limit",
+  "test_history.py::test_history_get_history_with_limit_and_status",
+  "test_history.py::test_history_get_history_with_limit_and_status_fail",
+  "test_history.py::test_history_get_history_with_limit_and_status_success",
+  "test_history.py::test_history_get_history_with_status",
+  "test_history.py::test_history_get_history_with_status_fail",
+  "test_history.py::test_history_get_history_with_status_success",
+  "test_history.py::test_history_get_history_without_aruments"
+]
