@@ -9,7 +9,7 @@ ACCEPTABLE = [*NUMS, *BRACKETS, *OPERATORS, " "]
 
 
 def math_round(num, sign_count=3):
-    base = Decimal("1."+"0"*sign_count)
+    base = Decimal("1." + "0" * sign_count)
     result = num.quantize(base, rounding=ROUND_HALF_UP)
     return result.normalize()
 
