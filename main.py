@@ -19,7 +19,6 @@ async def calc(item: CalcRequest):
     if errors:
         history.save_history(item.expression, errors, Status.FAIL)
         msg = "".join(["Invalid data: ", *errors])
-        print(msg)
         raise HTTPException(status_code=422, detail=msg)
     result = calculate_expression(item.expression)
     history.save_history(item.expression, response=result,
