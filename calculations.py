@@ -9,14 +9,8 @@ ACCEPTABLE = [*NUMS, *BRACKETS, *OPERATORS, " "]
 
 
 def math_round(num, sign_count=3):
-    quantize_example = Decimal(10 ** ((-1) * Decimal(sign_count)))
-    decimal_num = Decimal(num)
-    if decimal_num % quantize_example < 5:
-        result = decimal_num.quantize(Decimal(quantize_example),
-                                      rounding=ROUND_HALF_UP)
-    else:
-        result = decimal_num.quantize(Decimal(quantize_example),
-                                      rounding=ROUND_HALF_DOWN)
+    base = Decimal("1."+"0"*sign_count)
+    result = num.quantize(base, rounding=ROUND_HALF_UP)
     return result.normalize()
 
 
@@ -83,12 +77,12 @@ def parse_expression(expression):
         if elem in NUMS:
             the_num += elem
         elif the_num:
-            yield float(the_num)
+            yield Decimal(the_num)
             the_num = ""
         if elem in OPERATORS or elem in BRACKETS:
             yield elem
     if the_num:
-        yield float(the_num)
+        yield Decimal(the_num)
 
 
 def get_rpn(formula):
