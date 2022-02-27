@@ -6,7 +6,6 @@ HISTORY_SIZE = 30
 class Status:
     FAIL = 'fail'
     SUCCESS = 'success'
-
     ALL = [FAIL, SUCCESS]
 
 
@@ -26,7 +25,6 @@ class History:
 
     def get_history(self, limit=HISTORY_SIZE, status=None):
         out_data = []
-        print(self.data)
         for i in range(-1, -len(self.data) - 1, -1):
             if status is not None and self.data[i]["status"] != status:
                 continue
